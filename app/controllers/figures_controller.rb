@@ -9,6 +9,7 @@ class FiguresController < ApplicationController
   end
 
   post '/figures' do
+    binding.pry
     titles_array = params["figure"]["title_ids"]
     titles_array.collect! {|a| a.to_i}
     figure_title = Title.find_by_id(titles_array[0])
