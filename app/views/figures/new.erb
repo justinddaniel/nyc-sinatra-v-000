@@ -1,0 +1,29 @@
+<h1>List a new figure.</h1>
+<form action='/figures' method="POST">
+    <fieldset>
+      <li>
+        <label>Figure Name:</label>
+        <input ... name="figure[name]" id = "figure_name"/></li>
+      <li>
+        <label>Figure Title(s):</label>
+        <% @titles.each do |t| %>
+        <input ... type="checkbox" name="figure[title_ids][]" id = "title_<%= t.id %>" value = "<%= t.id %>"/><%= t.name %>
+        <% end %>
+      </li><br>
+      <li>
+        <label> Or create a new title for your figure: </label>
+        <input type = "text" name="title[name]" id = "new_title" />
+      </li><br>
+      <li>
+        <label>Figure Landmark(s):</label>
+        <% @landmarks.each do |l| %>
+        <input ... type="checkbox" name="figure[landmark_ids][]" id = "landmark_<%= l.id %>" value = "<%= l.name %>"/><%= l.name %>
+        <% end %>
+      </li><br>
+      <li>
+        <label> Or create a new landmark for your figure: </label>
+        <input type = "text" name="landmark[name]" id = "new_landmark" />
+      </li><br>
+    </fieldset>
+  <input value="Create New Figure" type="submit"/>
+</form>
