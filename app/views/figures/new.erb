@@ -17,7 +17,7 @@
       <li>
         <label>Figure Landmark(s):</label>
         <% @landmarks.each do |l| %>
-        <input ... type="checkbox" name="figure[landmark_ids][]" id = "landmark_<%= l.id %>" value = "<%= l.name %>"/><%= l.name %>
+        <input ... type="checkbox" name="figure[landmark_ids][]" id = "landmark_<%= l.id %>" value = "<%= l.id %>"/>
         <% end %>
       </li><br>
       <li>
