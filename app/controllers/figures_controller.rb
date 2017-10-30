@@ -9,16 +9,17 @@ class FiguresController < ApplicationController
   end
 
   post '/figures' do
-    binding.pry
-    titles_array = params["figure"]["title_ids"]
-    titles_array.collect! {|a| a.to_i}
-    figure_title = Title.find_by_id(titles_array[0])
-    landmark_array = params["figure"]["landmark_ids"]
-    landmark = Landmark.find_by(name: landmark_array)
-    @figure = Figure.create(name: params["figure"]["name"])
-    @figure.titles << figure_title
-    @figure.landmarks << landmark
-    @figure.save
+  @figure = Figure.create(params["figure"])
+  if !params[:landmark][:name].empty?
+    @figure.landmarks << Landmark.create(params[:landmark])
   end
+
+  if !params[:title][:name].empty?
+    @figure.titles << Title.create(params[:title])
+  end
+  
+  @figure.save
+  redirect to "/figures/#{@figure.id}"
+end
 
 end
